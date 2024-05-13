@@ -9,7 +9,6 @@ public class MemoryMemberRepository implements MemberRepository {
     private static long sequence = 0L; // 0,1,2,.. key값 생성해줌.
 
     @Override
-
     public Member save(Member member) {
         member.setId(++sequence); //store에 넣기 전, member에 id값을 세팅
         store.put(member.getId(), member); //store에 저장하면 맵에 저장됨.
@@ -31,6 +30,10 @@ public class MemoryMemberRepository implements MemberRepository {
     @Override
     public List<Member> findAll() {
         return new ArrayList<>(store.values()); //store의 values가 바로 Member들
+    }
+
+    public void clearStore() {
+        store.clear();
     }
 
 }
